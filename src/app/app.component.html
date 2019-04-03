@@ -3,41 +3,36 @@
   <h1>
     {{currentFocus}}!
   </h1>
-</div>
 <form>
   Enter the name of the Keg <input #kegName>
   <br>
   Enter the name of the Beer brand <input #beerBrand>
   <br>
-  Enter the price <input #kegPrice>
+  Enter the price <input #kegPrice type="number">
   <br>
-  Enter the Alcohol Content<input #alcoholContent>
+  Enter the Alcohol Content<input #alcoholContent type="number">
   <br>
   <button (click) = "createKeg(kegName.value, beerBrand.value, kegPrice.value, alcoholContent.value)">Add New Keg!</button>
-
-
-
-
-
-
-
-
-  <!-- <label>Enter keg name: </label> -->
-
-  <!-- <input [(ngModel)]="kegName" type="text" name="kegName">
-  <label>Enter beer brand: </label>
-  <input [(ngModel)]="beerBrand" type="text" name="beerBrand">
-  <label>Enter price: </label>
-  <input [(ngModel)]="price" type="text" name="price">
-  <label>Enter alcohol content: </label>
-  <input [(ngModel)]="alcoholContent" type="text" name="alcoholContent">
-  <button (click)="createKeg(kegName, beerBrand, price, alcoholContent)">submit!</button> -->
 </form>
+<br>
 <ul>
-    <li *ngFor="let currentKeg of kegs"> Keg Name {{currentKeg.name}}</li>
-    <li *ngFor="let currentKeg of kegs"> Brand {{currentKeg.brand}}</li>
-    <li *ngFor="let currentKeg of kegs"> Price{{currentKeg.price}}</li>
-    <li *ngFor="let currentKeg of kegs"> Alcohol Content{{currentKeg.alcoholContent}}</li>
+  <li *ngFor="let currentKeg of kegs">
+    <br>Keg name: {{currentKeg.name}}
+    <br>brand: {{currentKeg.brand}} 
+    <br><span [class]="kegPriceColor(currentKeg)">price: {{currentKeg.price}}$</span>
+    <br><span [class]="kegAlcoholColor(currentKeg)"> content: {{currentKeg.alcoholContent}} % </span>
+    <br><span [class]="kegAmountColor(currentKeg)">amount in keg: {{currentKeg.kegAmount}} pints</span>
+    <br><button (click)="getABeer(currentKeg)">get a beer!</button><br>
+    <br>edit keg name: <input type="text" [(ngModel)]="currentKeg.name">
+    <br>edit beer brand: <input type="text" [(ngModel)]="currentKeg.brand">
+    <br>edit price: <input type="number" [(ngModel)]="currentKeg.price">
+    <br>edit alcoholic content: <input type="number" [(ngModel)]="currentKeg.alcoholContent">
+  </li>
 </ul>
+</div>
+
+
+
+
 
 
